@@ -107,6 +107,20 @@ To complete the project set up run the commands given below in 'Generating bower
 		
 # Building the project from the code base
 
+## Setting up dependencies
+
+	Download and install node from below url
+	https://nodejs.org/en/download/
+	set nodejs and npm path like below
+	C:\Users\ARUL KUMAR\AppData\Roaming\npm
+	install git and set path
+
+Run `npm install -g grunt grunt-cli bower`
+
+Run `npm install`
+Run `bower install`
+
+
 ## Build & development
 
 Run `grunt` for building and `grunt serve` for preview.
