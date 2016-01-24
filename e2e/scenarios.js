@@ -70,7 +70,7 @@ describe('PhoneCat App', function() {
 
   });
 });
-
+/*
 describe('Phone detail view', function() {
 
     beforeEach(function() {
@@ -82,4 +82,4 @@ describe('Phone detail view', function() {
       expect(element(by.binding('phoneId')).getText()).toBe('nexus-s');
     });
 
-});
+});*/

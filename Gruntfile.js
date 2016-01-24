@@ -19,7 +19,8 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn',
 	cacheBust: 'grunt-cache-bust',
 	war: 'grunt-war',
-	deploy:'grunt-tomcat-deploy'
+	deploy:'grunt-tomcat-deploy',
+	protractor:'grunt-protractor-runner'
   });
 
   // Configurable paths for the application
@@ -471,7 +472,46 @@ module.exports = function (grunt) {
 		war: 'dist/target/phonecat.war',
 		deploy: '/manager/text/deploy'
 		
+  },
+  protractor: {
+  options: {
+    // Location of your protractor config file
+    configFile: "protractor-conf.js",
+ 
+    // Do you want the output to use fun colors?
+    noColor: false,
+ 
+    // Set to true if you would like to use the Protractor command line debugging tool
+    // debug: true,
+ 
+    // Additional arguments that are passed to the webdriver command
+    args: { }
+  },
+  e2e: {
+    options: {
+      // Stops Grunt process if a test fails
+      keepAlive: false
+    }
+  },
+  continuous: {
+    options: {
+      keepAlive: true
+    }
   }
+},
+connect: {
+  options: {
+    port: 9000,
+    hostname: 'localhost'
+  },
+  test: {
+    options: {
+      // set the location of the application files
+      base: ['app']
+    }
+  }
+}
+ 
 
 
   });
@@ -479,6 +519,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-cache-bust');
   grunt.loadNpmTasks('grunt-war');
   grunt.loadNpmTasks('grunt-tomcat-deploy');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -537,4 +578,5 @@ module.exports = function (grunt) {
   grunt.registerTask('run:cachebustAndTest', [ 'cacheBust' ]);
   grunt.registerTask('run:createWar', [ 'war' ]);
   grunt.registerTask('run:deploy', [ 'deploy' ]);
+  grunt.registerTask('e2e-test', ['connect:test', 'protractor:e2e']);
 };
