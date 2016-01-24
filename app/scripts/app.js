@@ -1,31 +1,16 @@
-'use strict';
-
-/**
- * @ngdoc overview
- * @name angularGruntPhoneCatApp
- * @description
- * # angularGruntPhoneCatApp
- *
- * Main module of the application.
- */
-angular
-  .module('angularGruntPhoneCatApp', [
-    'ngResource',
-    'ngRoute'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
+angular.module('gruntPhonecatApp', ['ngRoute', 'phonecatControllers'])
+.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/phones', {
+        templateUrl: 'views/phone-list.html',
+        controller: 'PhoneListController'
+      }).
+      when('/phones/:phoneId', {
+        templateUrl: 'views/phone-detail.html',
+        controller: 'PhoneDetailController'
+      }).
+      otherwise({
+        redirectTo: '/phones'
       });
-  });
+  }]);
